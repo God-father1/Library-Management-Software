@@ -13,6 +13,12 @@ QWidget
     background-color: #323232;
 }
 
+QTreeView, QListView
+{
+    background-color: silver;
+    margin-left: 5px;
+}
+
 QWidget:item:hover
 {
     background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #ca0619);
@@ -68,7 +74,7 @@ QMenu::item:selected
 
 QWidget:disabled
 {
-    color: #404040;
+    color: #808080;
     background-color: #323232;
 }
 
@@ -79,7 +85,7 @@ QAbstractItemView
 
 QWidget:focus
 {
-    /*border: 2px solid QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);*/
+    /*border: 1px solid darkgray;*/
 }
 
 QLineEdit
@@ -103,6 +109,7 @@ QPushButton
     font-size: 12px;
     padding-left: 5px;
     padding-right: 5px;
+    min-width: 40px;
 }
 
 QPushButton:pressed
@@ -154,17 +161,23 @@ QComboBox::drop-down
 
 QComboBox::down-arrow
 {
-     image: url(:/down_arrow.png);
+     image: url(:/dark_orange/img/down_arrow.png);
+}
+
+QGroupBox
+{
+    border: 1px solid darkgray;
+    margin-top: 10px;
 }
 
 QGroupBox:focus
 {
-border: 2px solid QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);
+    border: 1px solid darkgray;
 }
 
 QTextEdit:focus
 {
-    border: 2px solid QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);
+    border: 1px solid darkgray;
 }
 
 QScrollBar:horizontal {
@@ -330,7 +343,7 @@ QMainWindow::separator:hover
 QToolBar::handle
 {
      spacing: 3px; /* spacing between items in the tool bar */
-     background: url(:/images/handle.png);
+     background: url(:/dark_orange/img/handle.png);
 }
 
 QMenu::separator
@@ -450,10 +463,58 @@ QRadioButton::indicator:hover, QCheckBox::indicator:hover
 
 QCheckBox::indicator:checked
 {
-    image:url(:/images/checkbox.png);
+    image:url(:/dark_orange/img/checkbox.png);
 }
 
 QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
 {
     border: 1px solid #444;
 }
+
+
+QSlider::groove:horizontal {
+    border: 1px solid #3A3939;
+    height: 8px;
+    background: #201F1F;
+    margin: 2px 0;
+    border-radius: 2px;
+}
+
+QSlider::handle:horizontal {
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1,
+      stop: 0.0 silver, stop: 0.2 #a8a8a8, stop: 1 #727272);
+    border: 1px solid #3A3939;
+    width: 14px;
+    height: 14px;
+    margin: -4px 0;
+    border-radius: 2px;
+}
+
+QSlider::groove:vertical {
+    border: 1px solid #3A3939;
+    width: 8px;
+    background: #201F1F;
+    margin: 0 0px;
+    border-radius: 2px;
+}
+
+QSlider::handle:vertical {
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0.0 silver,
+      stop: 0.2 #a8a8a8, stop: 1 #727272);
+    border: 1px solid #3A3939;
+    width: 14px;
+    height: 14px;
+    margin: 0 -4px;
+    border-radius: 2px;
+}
+
+QAbstractSpinBox {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: 1px solid darkgray;
+
+    border-radius: 2px;
+    min-width: 50px;
+}
+
+
