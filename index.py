@@ -35,6 +35,10 @@ class MainApp(QMainWindow , ui):
         self.pushButton_7.clicked.connect(self.Add_New_Books)
         self.pushButton_9.clicked.connect(self.Delete_Books)
         self.pushButton_10.clicked.connect(self.Search_Books)
+        self.pushButton_23.clicked.connect(self.Add_New_Client)
+        self.pushButton_26.clicked.connect(self.Search_Client)
+        self.pushButton_24.clicked.connect(self.Edit_Client)
+        self.pushButton_25.clicked.connect(self.Delete_Client)
         self.pushButton_14.clicked.connect(self.Add_Category)
         self.pushButton_15.clicked.connect(self.Add_Author)
         self.pushButton_16.clicked.connect(self.Add_Publisher)
@@ -228,6 +232,90 @@ class MainApp(QMainWindow , ui):
                 self.groupBox_4.setEnabled(True)
                 self.lineEdit_17.setText(row[1])
                 self.lineEdit_15.setText(row[2])
+
+
+##################  Client   ######################
+    
+    def Add_New_Client(self):
+        self.db = MySQLdb.connect(host='localhost', user='root', password='8584', db='library')
+        self.cur = self.db.cursor()
+
+        clientname = self.lineEdit_22.text()
+        email = self.lineEdit_24.text()
+        clientcode = self.lineEdit_23.text()
+        contact = self.lineEdit_30.text()
+        clientcategory = self.comboBox_11.currentText()
+
+        self.cur.execute('''
+                INSERT INTO clients(client_name,client_code,client_email,client_category,client_contact) VALUES(%s, %s, %s, %s, %s)
+                ''',(clientname,clientcode,email,clientcategory,contact))
+
+        self.db.commit()
+
+        self.statusBar().showMessage('Client Created Added Sucessfully !')
+
+
+
+
+    def Edit_Client(self):
+        self.db = MySQLdb.connect(host='localhost', user='root', password='8584', db='library')
+        self.cur = self.db.cursor()
+        cname = self.lineEdit_28.text()
+        name = self.lineEdit_25.text()
+        code = self.lineEdit_27.text()
+        email = self.lineEdit_26.text()
+        clientcategory = self.comboBox_12.currentText()
+        contact = self.lineEdit_32.text()
+        self.cur.execute('''
+        UPDATE clients SET client_name = %s , client_code=%s, client_category=%s, client_email=%s, client_contact=%s WHERE client_name=%s
+        ''',(name,code,clientcategory,email,contact,cname))
+
+        self.db.commit()
+        self.lineEdit_28.setText('')
+        self.statusBar().showMessage('Details Edited Sucessfully !')
+
+
+
+
+    def Show_Client(self):
+        self.db = MySQLdb.connect(host='localhost', user='root', password='8584', db='library')
+        self.cur = self.db.cursor()
+        
+
+
+    def Search_Client(self):
+        self.db = MySQLdb.connect(host='localhost', user='root', password='8584', db='library')
+        self.cur = self.db.cursor()
+        clientname = self.lineEdit_28.text()
+
+        sql = ''' SELECT * FROM clients WHERE client_name = %s'''
+        self.cur.execute(sql, [(clientname)])
+
+        data = self.cur.fetchone()
+        print(data)
+        self.lineEdit_25.setText(data[1])
+        self.lineEdit_27.setText(data[2])
+        self.lineEdit_26.setText(data[3])
+        self.comboBox_12.setCurrentText(data[4])
+        self.lineEdit_32.setText(data[5])
+
+
+        
+
+
+    def Delete_Client(self):
+        self.db = MySQLdb.connect(host='localhost', user='root', password='8584', db='library')
+        self.cur = self.db.cursor()
+
+        clientname = self.lineEdit_28.text()
+
+        warning = QMessageBox.warning(self , "Delete Client" , "Are you sure you want to DELETE this client?" , QMessageBox.Yes | QMessageBox.No)
+        if warning == QMessageBox.Yes:
+            sql= ''' DELETE FROM clients WHERE client_name = %s '''
+            self.cur.execute(sql,[(clientname)])
+            self.db.commit()
+            self.statusBar().showMessage('Client Deleted Successfully !')
+
 
 
 #################setting #######################
