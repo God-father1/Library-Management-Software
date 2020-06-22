@@ -6,5 +6,6 @@
 	<file>icons/setting1.png</file>
 	<file>icons/today.png</file>
 	<file>icons/theme.png</file>
+	<file>icons/auth.png</file>
 	</qresource>
 </RCC>

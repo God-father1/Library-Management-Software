@@ -29,6 +29,7 @@ class MainApp(QMainWindow , ui):
         self.pushButton_21.clicked.connect(self.Hiding_Themes)
         self.pushButton.clicked.connect(self.Open_day_to_day)
         self.pushButton_2.clicked.connect(self.Open_Books_Tab)
+        self.pushButton_27.clicked.connect(self.Open_Client_Tab)
         self.pushButton_3.clicked.connect(self.Open_Users_Tab)
         self.pushButton_4.clicked.connect(self.Open_Setting_Tab)
         self.pushButton_7.clicked.connect(self.Add_New_Books)
@@ -64,11 +65,14 @@ class MainApp(QMainWindow , ui):
     def Open_Books_Tab(self):
         self.tabWidget.setCurrentIndex(1)
 
-    def Open_Users_Tab(self):
+    def Open_Client_Tab(self):
         self.tabWidget.setCurrentIndex(2)
 
-    def Open_Setting_Tab(self):
+    def Open_Users_Tab(self):
         self.tabWidget.setCurrentIndex(3)
+
+    def Open_Setting_Tab(self):
+        self.tabWidget.setCurrentIndex(4)
 
 
 
